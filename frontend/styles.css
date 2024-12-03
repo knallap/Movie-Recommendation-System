@@ -1,0 +1,244 @@
+/* Reset styles for consistency */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  color: #ffffff;
+  background: url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Overlay for better readability */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+/* Container Styling */
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  color: #f9ca24;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Search Box Styling */
+.search-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+#searchInput {
+  width: 70%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #f1c40f;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  transition: border-color 0.3s;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+#searchInput::placeholder {
+  color: #ddd;
+}
+
+#searchInput:focus {
+  border-color: #f39c12;
+}
+
+#searchButton {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  background-color: #f1c40f;
+  color: #333;
+  cursor: pointer;
+  border-radius: 0 8px 8px 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#searchButton:hover {
+  background-color: #e67e22;
+  color: white;
+}
+
+/* Suggestions Dropdown */
+.suggestions {
+  position: absolute;
+  top: 45px;
+  width: 70%;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #f1c40f;
+  border-radius: 8px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.suggestions div {
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #f9ca24;
+  transition: background-color 0.2s;
+}
+
+.suggestions div:hover {
+  background-color: #f39c12;
+  color: #fff;
+}
+
+/* Recommendations Section */
+.recommendations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.movie {
+  text-align: center;
+  width: 150px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.movie:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.movie img {
+  width: 100%;
+  border-bottom: 3px solid #f1c40f;
+}
+
+.movie-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #f1c40f;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  #searchInput {
+    width: 60%;
+  }
+
+  #searchButton {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .movie {
+    width: 120px;
+  }
+
+  .movie-title {
+    font-size: 12px;
+  }
+}
+/* Modal styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  background-color: #222;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%; /* Increased width */
+  max-width: 900px; /* Adjusted for larger screen sizes */
+  text-align: center;
+  color: white;
+}
+
+.modal-movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px; /* Increased spacing between movies */
+}
+
+.modal-movie {
+  text-align: center;
+  width: 160px; /* Increased movie size */
+}
+
+.modal-movie img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.modal-movie-title {
+  margin-top: 10px;
+  font-size: 16px; /* Increased font size */
+  font-weight: bold;
+  color: #f1c40f;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 32px; /* Increased close button size */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: white;
+  text-decoration: none;
+}
