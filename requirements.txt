@@ -4,7 +4,7 @@ asttokens==2.0.5
 attrs==21.4.0
 backcall==0.2.0
 beautifulsoup4==4.11.1
-bleach==5.0.0
+bleach==6.1.0
 certifi==2024.8.30
 cffi==1.15.0
 charset-normalizer==3.4.0
@@ -44,7 +44,7 @@ nbconvert==6.5.0
 nbformat==5.4.0
 nest-asyncio==1.5.5
 notebook==6.4.11
-numpy==1.22.3
+numpy==1.21.6
 packaging==21.3
 pandas==1.4.2
 pandocfilters==1.5.0
@@ -61,7 +61,7 @@ pyparsing==3.0.8
 pyrsistent==0.18.1
 python-dateutil==2.8.2
 pytz==2022.1
-pywin32==303
+pywin32==303; platform_system == "Windows"
 pywinpty==2.0.5
 pyzmq==22.3.0
 requests==2.32.3
