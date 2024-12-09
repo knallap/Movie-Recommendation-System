@@ -86,7 +86,7 @@ def recommend():
 
         # Generate top-5 recommendations
         recommendations = []
-        for i in distances[1:6]:
+        for i in distances[1:4]:
             movie_id = movies.iloc[i[0]].movie_id
             recommendations.append({
                 "title": movies.iloc[i[0]].title,
