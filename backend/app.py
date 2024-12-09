@@ -31,25 +31,30 @@ def download_file(url, local_filename):
         print(f"{local_filename} already exists. Skipping download.")
 
 # Ensure required files are downloaded
-
-
-
 try:
     download_file(MOVIE_LIST_URL, MOVIE_LIST_FILE)
     download_file(SIMILARITY_MATRIX_URL, SIMILARITY_FILE)
 
+    # Load the movie list and similarity matrix
+    print("Loading movie list...")
     with open(MOVIE_LIST_FILE, 'rb') as f:
-        movies = pickle.load(f, encoding='latin1')  # Use compatibility mode
+        movies = pickle.load(f, encoding="latin1")  # Add encoding to handle compatibility
     print("Movie list loaded successfully.")
 
+    print("Loading similarity matrix...")
     with open(SIMILARITY_FILE, 'rb') as f:
-        similarity = pickle.load(f, encoding='latin1')
+        similarity = pickle.load(f, encoding="latin1")
     print("Similarity matrix loaded successfully.")
 except Exception as e:
     print(f"Error loading models: {e}")
     movies, similarity = None, None
 
-@app.route('/movies', methods=['GET'])
+@app.route("/", methods=["GET"])
+def home():
+    """Health check route."""
+    return jsonify({"status": "Running"})
+
+@app.route("/movies", methods=["GET"])
 def get_movies():
     """Endpoint to get the list of movies."""
     try:
@@ -60,7 +65,7 @@ def get_movies():
         print(f"Error in /movies endpoint: {e}")
         return jsonify({"error": "Internal server error"}), 500
 
-@app.route('/recommend', methods=['POST'])
+@app.route("/recommend", methods=["POST"])
 def recommend():
     """Endpoint to get movie recommendations."""
     try:
@@ -81,7 +86,7 @@ def recommend():
 
         # Generate top-5 recommendations
         recommendations = []
-        for i in distances[1:4]:
+        for i in distances[1:6]:
             movie_id = movies.iloc[i[0]].movie_id
             recommendations.append({
                 "title": movies.iloc[i[0]].title,
@@ -112,4 +117,4 @@ def fetch_poster(movie_id):
         return ""  # Return an empty string in case of an error
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000,debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

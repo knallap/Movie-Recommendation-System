@@ -1,14 +1,17 @@
 let movieList = [];
 
+// Backend URL
+const backendUrl = "https://movie-recommendation-backend-d4d0.onrender.com";
+
 // Fetch the movie list from the backend
 window.onload = async function () {
   try {
-    const response = await fetch("https://movie-recommendation-backend-d4d0.onrender.com/movies");
+    const response = await fetch(`${backendUrl}/movies`);
     if (!response.ok) throw new Error("Failed to fetch movie list.");
     const data = await response.json();
     movieList = data.movies; // Load the movie list
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching movie list:", error);
     alert("Error fetching movie list.");
   }
 };
@@ -50,7 +53,7 @@ document.getElementById("searchButton").addEventListener("click", async function
   }
 
   try {
-    const response = await fetch("https://movie-recommendation-backend-d4d0.onrender.com/recommend", {
+    const response = await fetch(`${backendUrl}/recommend`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
