@@ -112,4 +112,4 @@ def fetch_poster(movie_id):
         return ""  # Return an empty string in case of an error
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="0.0.0.0", port=5000)
