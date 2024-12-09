@@ -31,19 +31,19 @@ def download_file(url, local_filename):
         print(f"{local_filename} already exists. Skipping download.")
 
 # Ensure required files are downloaded
+
+
+
 try:
     download_file(MOVIE_LIST_URL, MOVIE_LIST_FILE)
     download_file(SIMILARITY_MATRIX_URL, SIMILARITY_FILE)
 
-    # Load the movie list and similarity matrix
-    print("Loading movie list...")
     with open(MOVIE_LIST_FILE, 'rb') as f:
-        movies = pickle.load(f)
+        movies = pickle.load(f, encoding='latin1')  # Use compatibility mode
     print("Movie list loaded successfully.")
 
-    print("Loading similarity matrix...")
     with open(SIMILARITY_FILE, 'rb') as f:
-        similarity = pickle.load(f)
+        similarity = pickle.load(f, encoding='latin1')
     print("Similarity matrix loaded successfully.")
 except Exception as e:
     print(f"Error loading models: {e}")
@@ -112,4 +112,4 @@ def fetch_poster(movie_id):
         return ""  # Return an empty string in case of an error
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000,debug=True)
