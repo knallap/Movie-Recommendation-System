@@ -3,7 +3,7 @@ let movieList = [];
 // Fetch the movie list from the backend
 window.onload = async function () {
   try {
-    const response = await fetch("http://localhost:5000/movies");
+    const response = await fetch("https://movie-recommendation-backend-d4d0.onrender.com:8080/movies");
     if (!response.ok) throw new Error("Failed to fetch movie list.");
     const data = await response.json();
     movieList = data.movies; // Load the movie list
@@ -50,7 +50,7 @@ document.getElementById("searchButton").addEventListener("click", async function
   }
 
   try {
-    const response = await fetch("http://localhost:5000/recommend", {
+    const response = await fetch("https://movie-recommendation-backend-d4d0.onrender.com:8080/recommend", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
